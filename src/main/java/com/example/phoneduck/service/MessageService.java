@@ -17,8 +17,8 @@ public class MessageService {
         messageRepository.save(message);
     }
 
-    public List<String> findContentByChannelId(Long channelid){
-        return messageRepository.findContentByChannelId(channelid);
+    public List<String> findContentByChannelId(Long channelId){
+        return messageRepository.findContentByChannelId(channelId);
     }
 
     public Optional<Message> searchMessageById(Long messageId){

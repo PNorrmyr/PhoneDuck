@@ -1,7 +1,6 @@
 package com.example.phoneduck.controller;
 
 import com.example.phoneduck.model.Message;
-import com.example.phoneduck.service.ChannelService;
 import com.example.phoneduck.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +13,6 @@ import java.util.Optional;
 public class MessageController {
     @Autowired
     private MessageService messageService;
-    @Autowired
-    private ChannelService channelService;
 
     @PatchMapping("/messages/{messageId}")
     public ResponseEntity<String> updateMessage(@PathVariable Long messageId,
@@ -37,7 +34,6 @@ public class MessageController {
         if (optionalMessage.isEmpty()){
             return ResponseEntity.status(404).body("Message not found");
         } else {
-            Message currentMessage = optionalMessage.get();
             messageService.deleteMessage(messageId);
             return ResponseEntity.status(200).body("Message " + messageId + " was deleted");
         }
