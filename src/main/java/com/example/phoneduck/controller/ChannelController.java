@@ -60,6 +60,8 @@ public class ChannelController {
             return ResponseEntity.status(404).body("Could not find channel " + id);
         } else if (channel.getTitle() == null) {
             return ResponseEntity.status(400).body("Check correct title input");
+        } else if (channel.getTitle().isEmpty()) {
+            return ResponseEntity.status(400).body("Title can not be empty");
         } else {
             return ResponseEntity.status(201).body("Updated channel title");
         }
@@ -74,7 +76,7 @@ public class ChannelController {
             } else if (message.getContent() == null) {
                 return ResponseEntity.status(404).body("Check correct content input");
             } else if (message.getContent().isEmpty()) {
-                return ResponseEntity.status(400).body("Message cannot be empty");
+                return ResponseEntity.status(400).body("Message can not be empty");
             } else {
                 message.setChannel(currentChannel.get());
                 messageService.addMessage(message);
@@ -92,7 +94,7 @@ public class ChannelController {
         } else {
             List<String> messages = messageService.findContentByChannelId(id);
             String messagesString = String.join("\n", messages);
-            return ResponseEntity.status(200).body("Messages in channel, " + id + ": \n" + messagesString);
+            return ResponseEntity.status(200).body("Messages in channel, " + id + ": \n" + "ID |  Message  \n" + messagesString);
         }
 
     }

@@ -20,6 +20,8 @@ public class MessageController {
         Optional<Message> optionalMessage = messageService.searchMessageById(messageId);
         if (optionalMessage.isEmpty()){
             return ResponseEntity.status(404).body("Message not found");
+        } else if (message.getContent().isEmpty()) {
+            return ResponseEntity.status(400).body("Message content can not be empty");
         } else {
             Message currentMessage = optionalMessage.get();
             currentMessage.setContent(message.getContent());
