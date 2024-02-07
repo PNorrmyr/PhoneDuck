@@ -30,6 +30,7 @@ public class ChannelController {
         }
     }
 
+
     @PostMapping("/")
     public ResponseEntity<String> addChannel(@RequestBody Channel channel){
         if (channel.getTitle() == null) {
@@ -42,6 +43,7 @@ public class ChannelController {
         }
     }
 
+    //Parametern Id representerar id på kanalen man vill ta bort
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteChannel(@PathVariable Long id){
 
@@ -54,6 +56,7 @@ public class ChannelController {
         }
     }
 
+    //Parametern Id representerar id på kanalen man vill uppdatera titeln på
     @PatchMapping("/{id}")
     public ResponseEntity<String> updateChannelTitle(@PathVariable Long id, @RequestBody Channel channel) {
         if (!channelService.updateChannelTitle(id, channel)){
@@ -67,6 +70,7 @@ public class ChannelController {
         }
     }
 
+    //Parametern Id representerar id på kanalen man vill lägga till meddelande i
     @PutMapping("/{id}")
     public ResponseEntity<String> addMessageToChannel(@PathVariable Long id, @RequestBody Message message){
 
@@ -84,6 +88,7 @@ public class ChannelController {
             }
     }
 
+    //Parametern Id representerar id på kanalen man vill hämta meddelanden från
     @GetMapping("/{id}")
     public ResponseEntity<String> getAllMessages(@PathVariable Long id){
 

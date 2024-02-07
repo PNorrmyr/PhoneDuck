@@ -15,7 +15,7 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     @Query("SELECT id, content FROM Message WHERE channel.id = :channelId")
     List<String> findContentByChannelId(Long channelId);
 
-    @Transactional
+
     void deleteByChannel_Id(Long channelId);
 
     Optional<Message> getMessageById(Long messageId);

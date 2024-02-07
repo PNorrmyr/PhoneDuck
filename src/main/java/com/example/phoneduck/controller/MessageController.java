@@ -14,6 +14,7 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
+    //Parametern messageId representerar id på meddelandet man vill uppdatera
     @PatchMapping("/messages/{messageId}")
     public ResponseEntity<String> updateMessage(@PathVariable Long messageId,
                                                 @RequestBody Message message){
@@ -30,6 +31,7 @@ public class MessageController {
         }
     }
 
+    //Parametern messageId representerar id på meddelandet man vill ta bort.
     @DeleteMapping("/messages/{messageId}")
     public ResponseEntity<String> deleteMessage(@PathVariable Long messageId){
         Optional<Message> optionalMessage = messageService.searchMessageById(messageId);

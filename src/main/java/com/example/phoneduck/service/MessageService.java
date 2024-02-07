@@ -2,6 +2,7 @@ package com.example.phoneduck.service;
 
 import com.example.phoneduck.model.Message;
 import com.example.phoneduck.repository.MessageRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class MessageService {
         messageRepository.save(message);
     }
 
+
     public List<String> findContentByChannelId(Long channelId){
         return messageRepository.findContentByChannelId(channelId);
     }
@@ -28,7 +30,7 @@ public class MessageService {
     public void updateMessage(Message message){
         messageRepository.save(message);
     }
-
+    @Transactional
     public void deleteByChannelId(Long channelId){
         messageRepository.deleteByChannel_Id(channelId);
     }
