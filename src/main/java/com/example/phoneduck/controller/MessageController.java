@@ -31,6 +31,8 @@ public class MessageController {
         }
     }
 
+
+
     //Parametern messageId representerar id på meddelandet man vill ta bort.
     @DeleteMapping("/messages/{messageId}")
     public ResponseEntity<String> deleteMessage(@PathVariable Long messageId){
