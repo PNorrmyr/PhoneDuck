@@ -3,6 +3,8 @@ package com.example.phoneduck.service;
 import com.example.phoneduck.repository.MessageRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,16 +17,18 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class MessageServiceTest {
 
+    @Mock
+    private MessageRepository messageRepository;
+
+    @InjectMocks
+    private MessageService messageService;
+
     @Test
     void testFindContentByChannelId() {
         //Given
         List<String> expectedContent = Arrays.asList("Hello", "World");
-        MessageService messageService = new MessageService();
 
-        MessageRepository messageRepository = mock(MessageRepository.class);
         when(messageRepository.findContentByChannelId(10L)).thenReturn(expectedContent);
-        messageService.setMessageRepository(messageRepository);
-
 
         //When
         List<String> content = messageService.findContentByChannelId(10L);
